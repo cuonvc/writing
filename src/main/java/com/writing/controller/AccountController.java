@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
+import java.util.List;
 
 @RestController
 public class AccountController {
@@ -24,5 +25,17 @@ public class AccountController {
         accountDTO.setId(id);
 
         return service.saveAccount(accountDTO);
+    }
+
+    //list All
+    @GetMapping("/account/list")
+    public List<AccountDTO> listAll() {
+
+        return service.listAll();
+    }
+
+    @DeleteMapping("/account/delete")
+    public void deleteAccounts(@RequestBody Integer[] ids) {
+        service.deleteByIds(ids);
     }
 }
