@@ -1,7 +1,10 @@
 package com.writing.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.writing.model.constraints.Gender;
 import com.writing.model.constraints.Role;
+import lombok.Builder;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -24,10 +27,11 @@ public class AccountEntity extends AbstructEntity {
     private String lastName;
 
     @Column()
-    private Role role = Role.USER_ROLE;
+    @Builder.Default
+    private String role = Role.USER_ROLE.getAuthority();
 
     @Column()
-    private Gender gender;
+    private String gender;
 
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
@@ -54,6 +58,22 @@ public class AccountEntity extends AbstructEntity {
     private Set<CommentEntity> comments;
 
     public AccountEntity() {
+    }
+
+    public AccountEntity(String email, String password, String firstName,
+                         String lastName, /*String role,*/ String gender, Date dateOfBirth,
+                         String about, Date lastLogin,/* Integer loginCount,*/ Integer enabled) {
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+//        this.role = role;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.about = about;
+        this.lastLogin = lastLogin;
+//        this.loginCount = loginCount;
+        this.enabled = enabled;
     }
 
     public String getEmail() {
@@ -88,15 +108,19 @@ public class AccountEntity extends AbstructEntity {
         this.lastName = lastName;
     }
 
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 
-    public Gender getGender() {
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Gender gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
