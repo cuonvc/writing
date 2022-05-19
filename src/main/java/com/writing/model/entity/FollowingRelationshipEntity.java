@@ -1,20 +1,25 @@
 package com.writing.model.entity;
 
+import com.writing.model.constraints.FollowingRelaKey;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "following_relationship")
+@IdClass(FollowingRelaKey.class)
 public class FollowingRelationshipEntity {
 
     @Id
     @Column(name = "account_id")
     private Integer accountId;
 
+    @Id
     @Column(name = "following_account_id")
     private Integer followingAccountId;
 
     @ManyToOne()
+    @MapsId(value = "accountId")
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private AccountEntity account;
 

@@ -18,8 +18,8 @@ public class CommentEntity extends AbstructEntity {
     @Column(nullable = false)
     private String content;
 
-    @Column(name = "content_date")
-    private Date contentDate;
+    @Column(name = "comment_date")
+    private Date commentDate;
 
     public CommentEntity() {
     }
@@ -48,11 +48,11 @@ public class CommentEntity extends AbstructEntity {
         this.content = content;
     }
 
-    public Date getContentDate() {
-        return contentDate;
+    public Date getCommentDate() {
+        return commentDate;
     }
 
-    public void setContentDate(Date contentDate) {
-        this.contentDate = contentDate;
+    public void setCommentDate(Date commentDate) {
+        this.commentDate = commentDate;
     }
 }

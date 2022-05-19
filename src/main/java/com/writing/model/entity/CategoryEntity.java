@@ -13,8 +13,8 @@ public class CategoryEntity extends AbstructEntity {
 
     @ManyToMany()
     @JoinTable(name = "post_category",
-        joinColumns = @JoinColumn(name = "post_id"),
-        inverseJoinColumns = @JoinColumn(name = "category_id")
+        joinColumns = @JoinColumn(name = "category_id"),
+        inverseJoinColumns = @JoinColumn(name = "post_id")
     )
     private List<PostEntity> posts = new ArrayList<>();
 

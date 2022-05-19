@@ -30,7 +30,7 @@ public class PostEntity extends AbstructEntity {
     private String thumbnail;
 
     @OneToMany(mappedBy = "post")
-    private Set<CommentEntity> posts;
+    private List<CommentEntity> comments;
 
     @ManyToMany(mappedBy = "posts")
     private List<CategoryEntity> categories = new ArrayList<>();
@@ -86,12 +86,12 @@ public class PostEntity extends AbstructEntity {
         this.thumbnail = thumbnail;
     }
 
-    public Set<CommentEntity> getPosts() {
-        return posts;
+    public List<CommentEntity> getComments() {
+        return comments;
     }
 
-    public void setPosts(Set<CommentEntity> posts) {
-        this.posts = posts;
+    public void setComments(List<CommentEntity> comments) {
+        this.comments = comments;
     }
 
     public List<CategoryEntity> getCategories() {

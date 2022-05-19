@@ -47,7 +47,7 @@ public class AccountEntity extends AbstructEntity {
     @OneToMany(mappedBy = "account")
     private Set<PostEntity> posts;
 
-    @OneToMany(mappedBy = "followingAccountId")
+    @OneToMany(mappedBy = "account")
     private Set<FollowingRelationshipEntity> accountFollowing;
 
     @OneToMany(mappedBy = "account")
