@@ -17,7 +17,7 @@ public class AccountEntity extends AbstructEntity {
     @Column(length = 45, nullable = false, unique = true)
     private String email;
 
-    @Column(name = "pass_word", length = 45, nullable = false)
+    @Column(name = "pass_word", nullable = false)
     private String password;
 
     @Column(name = "first_name", length = 45, nullable = false)

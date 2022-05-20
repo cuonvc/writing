@@ -7,6 +7,7 @@ import com.writing.model.entity.AccountEntity;
 import com.writing.repository.AccountRepo;
 import com.writing.service.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -25,6 +26,9 @@ public class AccountService implements IAccountService {
     @Autowired
     private AccountConverter converter;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public AccountDTO saveAccount(AccountDTO accountDTO) throws ParseException {
         AccountEntity accountEntity;
@@ -41,9 +45,15 @@ public class AccountService implements IAccountService {
 
         accountEntity.setLastLogin(new Date());
         accountEntity.setDateOfBirth(dateFormat.parse(accountDTO.getDateOfBirth()));
+        encodePassword(accountEntity);
         accountRepo.save(accountEntity);
 
         return converter.toDto(accountEntity);
+    }
+
+    private void encodePassword(AccountEntity accountEntity) {
+        String encode = passwordEncoder.encode(accountEntity.getPassword());
+        accountEntity.setPassword(encode);
     }
 
     @Override
